@@ -4,6 +4,6 @@ namespace Application.UseCases.InsertCar
 {
     public interface IInsertCarUseCase
     {
-        Task ExecuteAsync(InsertCarCommand command);
+        Task<string> ExecuteAsync(InsertCarCommand command, CancellationToken cancellationToken);
     }
 }

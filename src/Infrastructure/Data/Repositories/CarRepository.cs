@@ -1,10 +1,12 @@
 ﻿using Infrastructure.Data.Scripts;
 using Infrastructure.Data.SqlServer.Context;
 using Infrastructure.Dtos;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Infrastructure.Data.Repositories
 {
-    public class CarRepository
+    [ExcludeFromCodeCoverage]
+    public class CarRepository : ICarRepository
     {
         private readonly IDbConnectionWrapper _dbConnectionWrapper;
         private readonly ICarScripts _scripts;
@@ -15,7 +17,7 @@ namespace Infrastructure.Data.Repositories
             _scripts = scripts;
         }
 
-        public Task InsertCarAsync(CarDto car)
+        public Task<int> InsertCarAsync(CarDto car)
         {
             return _dbConnectionWrapper.QuerySingleAsync<int>(_scripts.InsertCarAsync, car);
         }

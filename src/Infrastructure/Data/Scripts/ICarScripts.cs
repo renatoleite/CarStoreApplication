@@ -6,5 +6,4 @@
         public string SearchCarAsync { get; }
         public string DeleteCarAsync { get; }
     }
-
 }
