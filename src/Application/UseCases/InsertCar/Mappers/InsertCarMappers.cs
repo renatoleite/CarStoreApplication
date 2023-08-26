@@ -11,6 +11,8 @@ namespace Application.UseCases.InsertCar.Mappers
             Model = command.Model,
             Year = command.Year,
             CorrelationId = command.CorrelationId,
-        };
+            CodUserInc = command.CodUser,
+            CodUserUpd = command.CodUser
+    };
     }
 }

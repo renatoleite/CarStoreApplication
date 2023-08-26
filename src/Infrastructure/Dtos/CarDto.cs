@@ -8,5 +8,7 @@
         public string Brand { get; set; }
         public int Year { get; set; }
         public DateTime IncDate { get; set; }
+        public int CodUserInc { get; set; }
+        public int CodUserUpd { get; set; }
     }
 }

@@ -21,7 +21,7 @@ services:
       - -c
       - |
         /opt/mssql/bin/sqlservr &
-        sleep 10
+        sleep 15
         /opt/mssql-tools/bin/sqlcmd -U sa -P Pass@word -l 30 -e -i /scripts/Init/MigrationScript_Down.sql
         /opt/mssql-tools/bin/sqlcmd -U sa -P Pass@word -l 30 -e -i /scripts/Init/MigrationScript_Up.sql
         /opt/mssql-tools/bin/sqlcmd -U sa -P Pass@word -l 30 -e -i /scripts/v1/MigrationScript_Up.sql

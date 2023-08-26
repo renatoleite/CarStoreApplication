@@ -10,7 +10,8 @@ namespace Application.UseCases.UpdateCar.Mappers
             Id = command.Id,
             Brand = command.Brand,
             Model = command.Model,
-            Year = command.Year
+            Year = command.Year,
+            CodUser = command.CodUser,
         };
     }
 }
