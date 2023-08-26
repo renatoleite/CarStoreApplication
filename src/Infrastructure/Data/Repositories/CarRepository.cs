@@ -32,5 +32,17 @@ namespace Infrastructure.Data.Repositories
 
             return _dbConnectionWrapper.QueryAsync<CarDto>(_scripts.SearchCarAsync, @params, cancellationToken);
         }
+
+        public Task<CarDto> GetCarByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            var @params = new { id };
+            return _dbConnectionWrapper.QuerySingleAsync<CarDto>(_scripts.GetCarByIdAsync, @params, cancellationToken);
+        }
+
+        public Task DeleteCarAsync(int id, CancellationToken cancellationToken)
+        {
+            var @params = new { id };
+            return _dbConnectionWrapper.ExecuteAsync(_scripts.DeleteCarAsync, @params, cancellationToken);
+        }
     }
 }

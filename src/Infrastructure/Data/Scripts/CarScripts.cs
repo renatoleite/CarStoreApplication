@@ -8,6 +8,7 @@ namespace Infrastructure.Data.Scripts
         public string InsertCarAsync => InsertCar;
         public string SearchCarAsync => SearchCar;
         public string DeleteCarAsync => DeleteCar;
+        public string GetCarByIdAsync => GetCarById;
 
         private const string InsertCar = @"
             INSERT INTO [dbo].[CAR]
@@ -27,6 +28,19 @@ namespace Infrastructure.Data.Scripts
                 [dbo].[CAR]
             WHERE
                 DSC_MODEL LIKE @Term OR DSC_BRAND LIKE @Term OR COD_CORRELATION = @CorrelationId";
+
+        private const string GetCarById = @"
+            SELECT
+                COD_CAR AS [Id],
+                COD_CORRELATION AS [CorrelationId],
+                DSC_MODEL AS [Model],
+                DSC_BRAND AS [Brand],
+                NUM_YEAR AS [Year],
+                DAT_INC AS [IncDate]
+            FROM
+                [dbo].[CAR]
+            WHERE
+                COD_CAR = @Id";
 
         private const string DeleteCar = "DELETE [dbo].[CAR] WHERE COD_CAR = @Id";
     }
