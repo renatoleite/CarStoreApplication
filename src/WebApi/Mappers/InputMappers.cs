@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.InsertCar.Commands;
+using Application.UseCases.SearchCar.Commands;
 using WebApi.Models;
 
 namespace WebApi.Mappers

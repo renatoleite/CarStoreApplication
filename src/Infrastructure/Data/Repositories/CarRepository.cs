@@ -17,9 +17,20 @@ namespace Infrastructure.Data.Repositories
             _scripts = scripts;
         }
 
-        public Task<int> InsertCarAsync(CarDto car)
+        public Task<int> InsertCarAsync(CarDto car, CancellationToken cancellationToken)
         {
-            return _dbConnectionWrapper.QuerySingleAsync<int>(_scripts.InsertCarAsync, car);
+            return _dbConnectionWrapper.QuerySingleAsync<int>(_scripts.InsertCarAsync, car, cancellationToken);
+        }
+
+        public Task<IEnumerable<CarDto>> SearchCarAsync(SearchCarDto search, CancellationToken cancellationToken)
+        {
+            var @params = new
+            {
+                Term = search.Term,
+                CorrelationId = Guid.TryParse(search.Term, out var correlationId) ? (Guid?)correlationId : null
+            }; 
+
+            return _dbConnectionWrapper.QueryAsync<CarDto>(_scripts.SearchCarAsync, @params, cancellationToken);
         }
     }
 }

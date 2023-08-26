@@ -30,7 +30,10 @@ namespace Infrastructure.Data.SqlServer.Context
             });
         }
 
-        public Task<T> QuerySingleAsync<T>(string query, object @params, IDbTransaction? transaction = null) =>
-            _dbConnection.QuerySingleAsync<T>(new CommandDefinition(query, @params, transaction));
+        public Task<T> QuerySingleAsync<T>(string query, object @params, CancellationToken cancellationToken, IDbTransaction? transaction = null) =>
+            _dbConnection.QuerySingleAsync<T>(new CommandDefinition(query, @params, transaction, cancellationToken: cancellationToken));
+
+        public Task<IEnumerable<T>> QueryAsync<T>(string query, object @params, CancellationToken cancellationToken) =>
+            _dbConnection.QueryAsync<T>(new CommandDefinition(query, @params, cancellationToken: cancellationToken));
     }
 }

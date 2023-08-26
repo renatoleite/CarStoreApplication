@@ -1,4 +1,6 @@
 using Application.UseCases.InsertCar;
+using Application.UseCases.SearchCar;
+using Application.UseCases.SearchCar.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Mappers;
@@ -12,13 +14,16 @@ namespace WebApi.Controllers
     {
         private readonly ILogger<CarController> _logger;
         private readonly IInsertCarUseCase _insertCarUseCase;
+        private readonly ISearchCarUseCase _searchCarUseCase;
 
         public CarController(
             ILogger<CarController> logger,
-            IInsertCarUseCase insertCarUseCase)
+            IInsertCarUseCase insertCarUseCase,
+            ISearchCarUseCase searchCarUseCase)
         {
             _logger = logger;
             _insertCarUseCase = insertCarUseCase;
+            _searchCarUseCase = searchCarUseCase;
         }
 
         [HttpPost]
@@ -36,6 +41,26 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An unexpected error occurred.");
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("{term}")]
+        public async Task<IActionResult> Get(string term, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var command = new SearchCarCommand() { Term = term };
+                var output = await _searchCarUseCase.ExecuteAsync(command, cancellationToken);
+
+                if (output.IsValid)
+                    return Ok(output.Result);
+
+                return BadRequest(output);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred");
                 return BadRequest();
             }
         }

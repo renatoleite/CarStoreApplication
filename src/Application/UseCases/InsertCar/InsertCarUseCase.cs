@@ -39,7 +39,7 @@ namespace Application.UseCases.InsertCar
                 _logger.LogInformation("{UseCase} - Inserting car; Model: {model}, Brand: {brand}; CorrelationId: {CorrelationId}",
                     nameof(InsertCarUseCase), command.Model, command.Brand, command.CorrelationId);
 
-                var id = await _repository.InsertCarAsync(command.MapToCarDto());
+                var id = await _repository.InsertCarAsync(command.MapToCarDto(), cancellationToken);
 
                 _logger.LogInformation("{UseCase} - Inserted car successfully; CorrelationId: {CorrelationId}",
                     nameof(InsertCarUseCase), command.CorrelationId);

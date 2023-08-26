@@ -22,7 +22,7 @@ namespace Infrastructure.Data.Scripts
                 DSC_MODEL AS [Model],
                 DSC_BRAND AS [Brand],
                 NUM_YEAR AS [Year],
-                DAR_INC AS [IncDate]
+                DAT_INC AS [IncDate]
             FROM
                 [dbo].[CAR]
             WHERE
