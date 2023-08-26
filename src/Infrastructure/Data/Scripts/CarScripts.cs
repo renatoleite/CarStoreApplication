@@ -9,8 +9,24 @@ namespace Infrastructure.Data.Scripts
         public string SearchCarAsync => SearchCar;
         public string DeleteCarAsync => DeleteCar;
 
-        private const string InsertCar = "";
-        private const string SearchCar = "";
-        private const string DeleteCar = "";
+        private const string InsertCar = @"
+            INSERT INTO [dbo].[CAR]
+            (DSC_MODEL, DSC_BRAND, NUM_YEAR)
+            OUTPUT INSERTED.COD_CAR
+            VALUES (@Model, @Brand, @Year)";
+
+        private const string SearchCar = @"
+            SELECT
+                COD_CAR AS [ID],
+                DSC_MODEL AS [Model],
+                DSC_BRAND AS [Brand],
+                NUM_YEAR AS [Year],
+                DAR_INC AS [IncDate]
+            FROM
+                [dbo].[CAR]
+            WHERE
+                DSC_MODEL LIKE @Term OR DSC_BRAND LIKE @Term";
+
+        private const string DeleteCar = "DELETE [dbo].[CAR] WHERE COD_CAR = @Id";
     }
 }

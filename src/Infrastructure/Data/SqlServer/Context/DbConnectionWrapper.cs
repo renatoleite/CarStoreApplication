@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data.SqlServer.Context.RetryPolicy;
+﻿using Dapper;
+using Infrastructure.Data.SqlServer.Context.RetryPolicy;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 
@@ -28,5 +29,8 @@ namespace Infrastructure.Data.SqlServer.Context
                 }
             });
         }
+
+        public Task<T> QuerySingleAsync<T>(string query, object @params, IDbTransaction? transaction = null) =>
+            _dbConnection.QuerySingleAsync<T>(new CommandDefinition(query, @params, transaction));
     }
 }
