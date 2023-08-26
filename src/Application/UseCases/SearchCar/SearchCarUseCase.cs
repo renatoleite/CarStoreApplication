@@ -50,7 +50,7 @@ namespace Application.UseCases.SearchCar
             {
                 _logger.LogError(ex, "{UseCase} - An unexpected error has occurred", nameof(SearchCarUseCase));
 
-                output.AddErrorMessage($"An unexpected error occurred while search the car");
+                output.AddErrorMessage($"An unexpected error occurred while searching the car");
             }
 
             return output;

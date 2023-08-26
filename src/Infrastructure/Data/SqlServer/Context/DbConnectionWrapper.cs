@@ -36,6 +36,9 @@ namespace Infrastructure.Data.SqlServer.Context
         public Task<IEnumerable<T>> QueryAsync<T>(string query, object @params, CancellationToken cancellationToken) =>
             _dbConnection.QueryAsync<T>(new CommandDefinition(query, @params, cancellationToken: cancellationToken));
 
+        public Task<T> QuerySingleOrDefaultAsync<T>(string query, object @params, CancellationToken cancellationToken, IDbTransaction? transaction = null) =>
+            _dbConnection.QuerySingleOrDefaultAsync<T>(new CommandDefinition(query, @params, transaction, cancellationToken: cancellationToken));
+
         public Task ExecuteAsync(string query, object @params, CancellationToken cancellationToken) =>
             _dbConnection.ExecuteAsync(new CommandDefinition(query, @params, cancellationToken: cancellationToken));
     }

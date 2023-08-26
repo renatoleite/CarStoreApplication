@@ -36,7 +36,7 @@ namespace Infrastructure.Data.Repositories
         public Task<CarDto> GetCarByIdAsync(int id, CancellationToken cancellationToken)
         {
             var @params = new { id };
-            return _dbConnectionWrapper.QuerySingleAsync<CarDto>(_scripts.GetCarByIdAsync, @params, cancellationToken);
+            return _dbConnectionWrapper.QuerySingleOrDefaultAsync<CarDto>(_scripts.GetCarByIdAsync, @params, cancellationToken);
         }
 
         public Task DeleteCarAsync(int id, CancellationToken cancellationToken)

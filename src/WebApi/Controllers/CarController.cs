@@ -1,3 +1,5 @@
+using Application.UseCases.DeleteCar;
+using Application.UseCases.DeleteCar.Commands;
 using Application.UseCases.InsertCar;
 using Application.UseCases.SearchCar;
 using Application.UseCases.SearchCar.Commands;
@@ -15,15 +17,18 @@ namespace WebApi.Controllers
         private readonly ILogger<CarController> _logger;
         private readonly IInsertCarUseCase _insertCarUseCase;
         private readonly ISearchCarUseCase _searchCarUseCase;
+        private readonly IDeleteCarUseCase _deleteCarUseCase;
 
         public CarController(
             ILogger<CarController> logger,
             IInsertCarUseCase insertCarUseCase,
-            ISearchCarUseCase searchCarUseCase)
+            ISearchCarUseCase searchCarUseCase,
+            IDeleteCarUseCase deleteCarUseCase)
         {
             _logger = logger;
             _insertCarUseCase = insertCarUseCase;
             _searchCarUseCase = searchCarUseCase;
+            _deleteCarUseCase = deleteCarUseCase;
         }
 
         [HttpPost]
@@ -52,6 +57,26 @@ namespace WebApi.Controllers
             {
                 var command = new SearchCarCommand() { Term = term };
                 var output = await _searchCarUseCase.ExecuteAsync(command, cancellationToken);
+
+                if (output.IsValid)
+                    return Ok(output.Result);
+
+                return BadRequest(output);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred");
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var command = new DeleteCarCommand() { Id = id };
+                var output = await _deleteCarUseCase.ExecuteAsync(command, cancellationToken);
 
                 if (output.IsValid)
                     return Ok(output.Result);

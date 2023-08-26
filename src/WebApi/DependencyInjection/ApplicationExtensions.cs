@@ -1,4 +1,7 @@
-﻿using Application.UseCases.InsertCar;
+﻿using Application.UseCases.DeleteCar;
+using Application.UseCases.DeleteCar.Commands;
+using Application.UseCases.DeleteCar.Validation;
+using Application.UseCases.InsertCar;
 using Application.UseCases.InsertCar.Commands;
 using Application.UseCases.InsertCar.Validation;
 using Application.UseCases.SearchCar;
@@ -14,9 +17,11 @@ namespace WebApi.DependencyInjection
         {
             services.AddScoped<IValidator<InsertCarCommand>, InsertCarCommandValidator>();
             services.AddScoped<IValidator<SearchCarCommand>, SearchCarCommandValidator>();
+            services.AddScoped<IValidator<DeleteCarCommand>, DeleteCarCommandValidator>();
 
             services.AddScoped<IInsertCarUseCase, InsertCarUseCase>();
             services.AddScoped<ISearchCarUseCase, SearchCarUseCase>();
+            services.AddScoped<IDeleteCarUseCase, DeleteCarUseCase>();
 
             return services;
         }

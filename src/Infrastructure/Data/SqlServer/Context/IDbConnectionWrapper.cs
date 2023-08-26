@@ -7,6 +7,7 @@ namespace Infrastructure.Data.SqlServer.Context
         void Open();
         Task<T> QuerySingleAsync<T>(string query, object @params, CancellationToken cancellationToken, IDbTransaction? transaction = null);
         Task<IEnumerable<T>> QueryAsync<T>(string query, object @params, CancellationToken cancellationToken);
+        Task<T> QuerySingleOrDefaultAsync<T>(string query, object @params, CancellationToken cancellationToken, IDbTransaction? transaction = null);
         Task ExecuteAsync(string query, object @params, CancellationToken cancellationToken);
     }
 }
