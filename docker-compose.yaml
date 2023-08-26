@@ -1,0 +1,16 @@
+version: "3.4"
+
+networks:
+  my-bridge-network:
+    driver: bridge
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    networks:
+        - my-bridge-network
+    ports:
+      - "1433:1433"
