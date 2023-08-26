@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DLL\" />
     <Folder Include="Dtos\" />
     <Folder Include="Data\Repositories\" />
   </ItemGroup>
