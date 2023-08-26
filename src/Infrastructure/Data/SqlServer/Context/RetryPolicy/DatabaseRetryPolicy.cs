@@ -8,11 +8,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace Infrastructure.Data.SqlServer.Context.RetryPolicy
 {
     [ExcludeFromCodeCoverage]
-    internal class DatabaseRetryPolicy
+    public class DatabaseRetryPolicy : IDatabaseRetryPolicy
     {
         private readonly Policy _retryPolicy;
 
-        public DatabaseRetryPolicy(IOptions<SqlServerPolicyConfig> configuration)
+        public DatabaseRetryPolicy(IOptions<SqlServerPolicyConfiguration> configuration)
         {
             _retryPolicy = Policy
                 .Handle<SqlException>(SqlServerTransientExceptionDetector.ShouldRetry)
