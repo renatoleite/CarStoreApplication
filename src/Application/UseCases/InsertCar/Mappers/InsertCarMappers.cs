@@ -9,6 +9,7 @@ namespace Application.UseCases.InsertCar.Mappers
         {
             Brand = command.Brand,
             Model = command.Model,
+            Year = command.Year,
             CorrelationId = command.CorrelationId,
         };
     }

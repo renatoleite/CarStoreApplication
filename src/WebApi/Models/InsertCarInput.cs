@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.InsertCar.Commands
+﻿namespace WebApi.Models
 {
-    public class InsertCarCommand
+    public class InsertCarInput
     {
-        public Guid CorrelationId { get; set; }
         public string Model { get; set; }
         public string Brand { get; set; }
         public int Year { get; set; }
