@@ -9,6 +9,7 @@ namespace Infrastructure.Data.Scripts
         public string SearchCarAsync => SearchCar;
         public string DeleteCarAsync => DeleteCar;
         public string GetCarByIdAsync => GetCarById;
+        public string UpdateCarAsync => UpdateCar;
 
         private const string InsertCar = @"
             INSERT INTO [dbo].[CAR]
@@ -43,5 +44,15 @@ namespace Infrastructure.Data.Scripts
                 COD_CAR = @Id";
 
         private const string DeleteCar = "DELETE [dbo].[CAR] WHERE COD_CAR = @Id";
+
+        private const string UpdateCar = @"
+            UPDATE
+	            [dbo].[CAR]
+            SET
+	            DSC_MODEL = ISNULL(@Model, DSC_MODEL),
+	            DSC_BRAND = ISNULL(@Brand, DSC_BRAND),
+	            NUM_YEAR = ISNULL(@Year, NUM_YEAR)
+            WHERE
+	            COD_CAR = @Id";
     }
 }

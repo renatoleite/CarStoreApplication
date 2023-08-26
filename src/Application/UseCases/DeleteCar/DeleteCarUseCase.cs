@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.DeleteCar
 {
-
     public class DeleteCarUseCase : IDeleteCarUseCase
     {
         private readonly ICarRepository _repository;
@@ -68,5 +67,4 @@ namespace Application.UseCases.DeleteCar
             return output;
         }
     }
-
 }

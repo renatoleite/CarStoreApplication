@@ -44,5 +44,10 @@ namespace Infrastructure.Data.Repositories
             var @params = new { id };
             return _dbConnectionWrapper.ExecuteAsync(_scripts.DeleteCarAsync, @params, cancellationToken);
         }
+
+        public Task UpdateCarAsync(UpdateCarDto update, CancellationToken cancellationToken)
+        {
+            return _dbConnectionWrapper.ExecuteAsync(_scripts.UpdateCarAsync, update, cancellationToken);
+        }
     }
 }

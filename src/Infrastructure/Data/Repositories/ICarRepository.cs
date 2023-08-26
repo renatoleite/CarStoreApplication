@@ -8,5 +8,6 @@ namespace Infrastructure.Data.Repositories
         Task<IEnumerable<CarDto>> SearchCarAsync(SearchCarDto search, CancellationToken cancellationToken);
         Task<CarDto> GetCarByIdAsync(int id, CancellationToken cancellationToken);
         Task DeleteCarAsync(int id, CancellationToken cancellationToken);
+        Task UpdateCarAsync(UpdateCarDto update, CancellationToken cancellationToken);
     }
 }
