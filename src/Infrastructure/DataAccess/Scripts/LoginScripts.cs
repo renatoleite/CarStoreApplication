@@ -9,8 +9,8 @@ namespace Infrastructure.DataAccess.Scripts
         public string InsertUserAsync => InsertUser;
 
         private const string InsertUser = @"
-            INSERT INTO [dbo].[LOGIN] (NAM_USER, [PWD_USER])
+            INSERT INTO [dbo].[LOGIN] (NAM_USER, [PWD_USER], [DSC_ALLOW_ENDPOINTS])
             OUTPUT INSERTED.COD_LOGIN
-            VALUES (@Name, @Password)";
+            VALUES (@Name, @Password, @AllowEndpoints)";
     }
 }

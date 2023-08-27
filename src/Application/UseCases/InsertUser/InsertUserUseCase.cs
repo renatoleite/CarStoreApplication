@@ -44,7 +44,7 @@ namespace Application.UseCases.InsertUser
                 _logger.LogInformation("{UseCase} - Inserting user; Name: {name}",
                     nameof(InsertUserUseCase), command.Name);
 
-                var user = _entityFactory.NewLoginUser(command.Name, EncryptPassword(command.Password));
+                var user = _entityFactory.NewLoginUser(command.Name, EncryptPassword(command.Password), command.AllowEndpoints);
 
                 var id = await _repository.InsertUserAsync(user, cancellationToken);
 

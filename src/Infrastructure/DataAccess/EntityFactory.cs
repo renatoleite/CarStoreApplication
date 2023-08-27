@@ -9,7 +9,7 @@ namespace Infrastructure.DataAccess
         public Car NewCar(string brand, string model, int year, User createdBy, User updatedBy)
             => new Car(Guid.NewGuid(), brand, model, year, createdBy, updatedBy);
 
-        public LoginUser NewLoginUser(string name, string password) =>
-            new LoginUser(name, password);
+        public LoginUser NewLoginUser(string name, string password, string allowEndpoints) =>
+            new LoginUser(name, password, allowEndpoints);
     }
 }

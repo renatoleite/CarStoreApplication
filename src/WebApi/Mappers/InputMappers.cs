@@ -11,6 +11,7 @@ namespace WebApi.Mappers
         {
             Name = input.Name,
             Password = input.Password,
+            AllowEndpoints = input.AllowEndpoints,
         };
 
         public static InsertCarCommand MapToApplication(this InsertCarInput input) => new InsertCarCommand
