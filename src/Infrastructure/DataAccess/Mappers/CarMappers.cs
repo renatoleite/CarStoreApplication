@@ -26,6 +26,8 @@ namespace Infrastructure.DataAccess.Mappers
 
         public static Car MapToEntity(this CarDto car)
         {
+            if (car == null) return null;
+
             var carEntity = new Car(
                 car.CorrelationId, car.Brand, car.Model, car.Year,
                 new User(car.CreatedUserId, car.CreatedUserName),
@@ -38,7 +40,9 @@ namespace Infrastructure.DataAccess.Mappers
 
         public static LoginUser MapToEntity(this LoginDto login)
         {
-            var entity = new LoginUser(login.Name, login.Password, login.Permissions);
+            if (login == null) return null;
+
+            var entity = new LoginUser(login.Name, login.Password, login.Roles);
             entity.AddId(login.Id);
             return entity;
         }

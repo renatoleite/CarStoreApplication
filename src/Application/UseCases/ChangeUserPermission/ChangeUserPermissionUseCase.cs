@@ -50,7 +50,7 @@ namespace Application.UseCases.ChangeUserPermission
                 _logger.LogInformation("{UseCase} - Updating user by id: {id}",
                     nameof(ChangeUserPermissionUseCase), command.Id);
 
-                await _repository.ChangeUserPermissionAsync(command.Id, command.AllowPermission, cancellationToken);
+                await _repository.ChangeUserPermissionAsync(command.Id, command.Roles, cancellationToken);
 
                 _logger.LogInformation("{UseCase} - User permission updated successfully; Id: {id}",
                     nameof(ChangeUserPermissionUseCase), command.Id);

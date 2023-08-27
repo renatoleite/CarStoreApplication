@@ -30,10 +30,17 @@ namespace Infrastructure.DataAccess.Repositories
             return result.MapToEntity();
         }
 
-        public Task ChangeUserPermissionAsync(int id, string permission, CancellationToken cancellationToken)
+        public Task ChangeUserPermissionAsync(int id, string roles, CancellationToken cancellationToken)
         {
-            var @params = new { id, permission };
+            var @params = new { id, roles };
             return _dbConnectionWrapper.ExecuteAsync(_scripts.ChangeUserPermissionAsync, @params, cancellationToken);
+        }
+
+        public async Task<ILoginUser> GetUserByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            var @params = new { name };
+            var result = await _dbConnectionWrapper.QuerySingleOrDefaultAsync<LoginDto>(_scripts.GetUserByNameAsync, @params, cancellationToken);
+            return result.MapToEntity();
         }
     }
 }

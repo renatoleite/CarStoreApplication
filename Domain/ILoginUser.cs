@@ -4,6 +4,7 @@
     {
         int Id { get; }
         string Name { get; }
-        string Permissions { get; }
+        string Password { get; }
+        string Roles { get; }
     }
 }

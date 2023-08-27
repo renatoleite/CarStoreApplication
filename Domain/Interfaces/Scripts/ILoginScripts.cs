@@ -5,5 +5,6 @@
         string InsertUserAsync { get; }
         string ChangeUserPermissionAsync { get; }
         string GetUserByIdAsync { get; }
+        string GetUserByNameAsync { get; }
     }
 }

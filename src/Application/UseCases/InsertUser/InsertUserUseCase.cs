@@ -1,11 +1,10 @@
-﻿using Application.Shared.Models;
+﻿using Application.Shared.Extensions;
+using Application.Shared.Models;
 using Application.UseCases.InsertUser.Commands;
 using Domain.Interfaces.Entity;
 using Domain.Interfaces.Repositories;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Application.UseCases.InsertUser
 {
@@ -44,7 +43,7 @@ namespace Application.UseCases.InsertUser
                 _logger.LogInformation("{UseCase} - Inserting user; Name: {name}",
                     nameof(InsertUserUseCase), command.Name);
 
-                var user = _entityFactory.NewLoginUser(command.Name, EncryptPassword(command.Password), command.AllowEndpoints);
+                var user = _entityFactory.NewLoginUser(command.Name, command.Password.CreateSHA256Hash(), command.Roles);
 
                 var id = await _repository.InsertUserAsync(user, cancellationToken);
 
@@ -62,13 +61,6 @@ namespace Application.UseCases.InsertUser
             }
 
             return output;
-        }
-
-        public static string EncryptPassword(string input)
-        {
-            var inputBytes = Encoding.UTF8.GetBytes(input);
-            var inputHash = SHA256.HashData(inputBytes);
-            return Convert.ToHexString(inputHash);
         }
     }
 }

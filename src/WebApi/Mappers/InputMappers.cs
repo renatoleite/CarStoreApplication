@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.ChangeUserPermission.Commands;
 using Application.UseCases.InsertCar.Commands;
 using Application.UseCases.InsertUser.Commands;
+using Application.UseCases.PerformLogin.Commands;
 using Application.UseCases.UpdateCar.Commands;
 using WebApi.Models;
 
@@ -10,9 +11,9 @@ namespace WebApi.Mappers
     {
         public static InsertUserCommand MapToApplication(this InsertUserInput input) => new InsertUserCommand
         {
-            Name = input.Name,
+            Name = input.UserName,
             Password = input.Password,
-            AllowEndpoints = input.AllowEndpoints,
+            Roles = input.Roles,
         };
 
         public static InsertCarCommand MapToApplication(this InsertCarInput input) => new InsertCarCommand
@@ -36,8 +37,14 @@ namespace WebApi.Mappers
 
         public static UpdatePermissionCommand MapToApplication(this UpdatePermissionInput input, int id) => new UpdatePermissionCommand
         {
-            AllowPermission = input.AllowPermission,
+            Roles = input.Roles,
             Id = id
+        };
+
+        public static LoginUseCommand MapToApplication(this LoginUserInput input) => new LoginUseCommand
+        {
+            Name = input.UserName,
+            Password = input.Password
         };
     }
 }

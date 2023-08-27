@@ -2,6 +2,6 @@
 {
     public class UpdatePermissionInput
     {
-        public string AllowPermission { get; set; }
+        public string Roles { get; set; }
     }
 }
