@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.InsertCar.Commands;
+using Application.UseCases.InsertUser.Commands;
 using Application.UseCases.UpdateCar.Commands;
 using WebApi.Models;
 
@@ -6,6 +7,12 @@ namespace WebApi.Mappers
 {
     public static class InputMappers
     {
+        public static InsertUserCommand MapToApplication(this InsertUserInput input) => new InsertUserCommand
+        {
+            Name = input.Name,
+            Password = input.Password,
+        };
+
         public static InsertCarCommand MapToApplication(this InsertCarInput input) => new InsertCarCommand
         {
             Brand = input.Brand,

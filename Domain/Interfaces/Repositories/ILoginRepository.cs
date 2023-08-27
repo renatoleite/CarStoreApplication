@@ -2,6 +2,6 @@
 {
     public interface ILoginRepository
     {
-        // Task<int> InsertUserAsync(CarDto car, CancellationToken cancellationToken);
+        Task<int> InsertUserAsync(ILoginUser user, CancellationToken cancellationToken);
     }
 }

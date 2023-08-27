@@ -4,7 +4,7 @@ namespace Domain
 {
     public class Car : ICar
     {
-        public int Id { set;  get; }
+        public int Id { set; get; }
         public Guid CorrelationId { get; }
         public string Brand { get; }
         public string Model { get; }

@@ -22,12 +22,15 @@ namespace WebApi.DependencyInjection
             services.Configure<SqlServerPolicyConfiguration>(configuration.GetSection(SqlConfigurationSection));
 
             services.AddSingleton<ICarScripts, CarScripts>();
+            services.AddSingleton<ILoginScripts, LoginScripts>();
 
-            services.AddScoped<IEntityFactory, EntityFactory>();
-            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IEntityFactory, EntityFactory>();            
             services.AddScoped<IDatabaseRetryPolicy, DatabaseRetryPolicy>();
             services.AddScoped<IDbConnectionWrapper, DbConnectionWrapper>();
             services.AddScoped<IDbConnection>(sp => new SqlConnection(configuration.GetSection(SqlConnectionStringSection).Value));
+
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ILoginRepository, LoginRepository>();
 
             return services;
         }

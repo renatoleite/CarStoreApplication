@@ -4,7 +4,7 @@ using Infrastructure.DataAccess.Dtos;
 
 namespace Infrastructure.DataAccess.Mappers
 {
-    public static class CarMapping
+    public static class CarMappers
     {
         public static IEnumerable<Car> MapToEntity(this IEnumerable<CarDto> cars)
         {

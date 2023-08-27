@@ -4,7 +4,7 @@ namespace Domain
 {
     public interface ICar
     {
-        int Id { get; }
+        int Id { set; get; }
         Guid CorrelationId { get; }
         string Brand { get; }
         string Model { get; }
