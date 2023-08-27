@@ -2,6 +2,8 @@
 {
     public interface ILoginScripts
     {
-        public string InsertUserAsync { get; }
+        string InsertUserAsync { get; }
+        string ChangeUserPermissionAsync { get; }
+        string GetUserByIdAsync { get; }
     }
 }

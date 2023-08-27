@@ -1,4 +1,5 @@
-﻿using Application.UseCases.InsertCar.Commands;
+﻿using Application.UseCases.ChangeUserPermission.Commands;
+using Application.UseCases.InsertCar.Commands;
 using Application.UseCases.InsertUser.Commands;
 using Application.UseCases.UpdateCar.Commands;
 using WebApi.Models;
@@ -31,6 +32,12 @@ namespace WebApi.Mappers
             Year = input.Year,
             Id = id,
             UserId = 1
+        };
+
+        public static UpdatePermissionCommand MapToApplication(this UpdatePermissionInput input, int id) => new UpdatePermissionCommand
+        {
+            AllowPermission = input.AllowPermission,
+            Id = id
         };
     }
 }

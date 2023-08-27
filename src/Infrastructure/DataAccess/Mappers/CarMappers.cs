@@ -35,5 +35,12 @@ namespace Infrastructure.DataAccess.Mappers
 
             return carEntity;
         }
+
+        public static LoginUser MapToEntity(this LoginDto login)
+        {
+            var entity = new LoginUser(login.Name, login.Password, login.Permissions);
+            entity.AddId(login.Id);
+            return entity;
+        }
     }
 }
