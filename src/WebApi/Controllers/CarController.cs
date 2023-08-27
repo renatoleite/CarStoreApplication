@@ -4,8 +4,10 @@ using Application.UseCases.InsertCar;
 using Application.UseCases.SearchCar;
 using Application.UseCases.SearchCar.Commands;
 using Application.UseCases.UpdateCar;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Consts;
 using WebApi.Mappers;
 using WebApi.Models;
 
@@ -36,6 +38,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.Create, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Post([FromBody] InsertCarInput input, CancellationToken cancellationToken)
         {
             try
@@ -55,6 +58,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{term}")]
+        [Authorize(Roles = Roles.Read, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get(string term, CancellationToken cancellationToken)
         {
             try
@@ -75,6 +79,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = Roles.Delete, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             try
@@ -93,8 +98,9 @@ namespace WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        
         [HttpPatch("{id:int}")]
+        [Authorize(Roles = Roles.Update, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Patch(int id, [FromBody] UpdateCarInput input, CancellationToken cancellationToken)
         {
             try
