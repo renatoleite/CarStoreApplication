@@ -7,6 +7,7 @@ using Application.UseCases.UpdateCar;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WebApi.Consts;
 using WebApi.Mappers;
 using WebApi.Models;
@@ -43,7 +44,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                var output = await _insertCarUseCase.ExecuteAsync(input.MapToApplication(), cancellationToken);
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                var userId = identity?.FindFirst(ClaimTypes.NameIdentifier);
+                var userName = identity?.FindFirst(ClaimTypes.Name);
+
+                if (userId == null || userName == null)
+                    return BadRequest();
+
+                var output = await _insertCarUseCase.ExecuteAsync(input.MapToApplication(Convert.ToInt32(userId), userName.Value), cancellationToken);
 
                 if (output.IsValid)
                     return Ok(output.Result);
@@ -105,7 +113,13 @@ namespace WebApi.Controllers
         {
             try
             {
-                var output = await _updateCarUseCase.ExecuteAsync(input.MapToApplication(id), cancellationToken);
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                var userId = identity?.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (userId == null)
+                    return BadRequest();
+
+                var output = await _updateCarUseCase.ExecuteAsync(input.MapToApplication(id, Convert.ToInt32(userId)), cancellationToken);
 
                 if (output.IsValid)
                     return Ok(output.Result);
