@@ -5,6 +5,6 @@ namespace Application.UseCases.PerformLogin
 {
     public interface IPerformLoginUseCase
     {
-        Task<Output> ExecuteAsync(LoginUseCommand command, CancellationToken cancellationToken);
+        Task<Output> ExecuteAsync(UserLoginCommand command, CancellationToken cancellationToken);
     }
 }

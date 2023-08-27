@@ -12,13 +12,13 @@ namespace Application.UseCases.PerformLogin
     {
         private readonly ILoginRepository _repository;
         private readonly ILogger<PerformLoginUseCase> _logger;
-        private readonly IValidator<LoginUseCommand> _validator;
+        private readonly IValidator<UserLoginCommand> _validator;
         private readonly IAuthenticationService _authenticationService;
 
         public PerformLoginUseCase(
             ILogger<PerformLoginUseCase> logger,
             ILoginRepository repository,
-            IValidator<LoginUseCommand> validator,
+            IValidator<UserLoginCommand> validator,
             IAuthenticationService authenticationService)
         {
             _logger = logger;
@@ -27,7 +27,7 @@ namespace Application.UseCases.PerformLogin
             _authenticationService = authenticationService;
         }
 
-        public async Task<Output> ExecuteAsync(LoginUseCommand command, CancellationToken cancellationToken)
+        public async Task<Output> ExecuteAsync(UserLoginCommand command, CancellationToken cancellationToken)
         {
             var output = new Output();
 
@@ -66,7 +66,7 @@ namespace Application.UseCases.PerformLogin
                 _logger.LogError(ex, "{UseCase} - An unexpected error has occurred;",
                     nameof(PerformLoginUseCase));
 
-                output.AddErrorMessage($"An unexpected error has occurred");
+                output.AddErrorMessage("An unexpected error has occurred");
             }
 
             return output;

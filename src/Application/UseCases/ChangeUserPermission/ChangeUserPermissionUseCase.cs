@@ -61,7 +61,7 @@ namespace Application.UseCases.ChangeUserPermission
             {
                 _logger.LogError(ex, "{UseCase} - An unexpected error has occurred", nameof(ChangeUserPermissionUseCase));
 
-                output.AddErrorMessage($"An unexpected error occurred while updating the user permission");
+                output.AddErrorMessage("An unexpected error occurred while updating the user permission");
             }
 
             return output;

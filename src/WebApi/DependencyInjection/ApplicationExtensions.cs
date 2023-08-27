@@ -39,7 +39,7 @@ namespace WebApi.DependencyInjection
             services.AddScoped<IValidator<UpdateCarCommand>, UpdateCarCommandValidator>();
             services.AddScoped<IValidator<InsertUserCommand>, InsertUserCommandValidator>();
             services.AddScoped<IValidator<UpdatePermissionCommand>, UpdatePermissionCommandValidator>();
-            services.AddScoped<IValidator<LoginUseCommand>, LoginUseCommandValidator>();
+            services.AddScoped<IValidator<UserLoginCommand>, UserLoginCommandValidator>();
 
             services.AddScoped<IInsertCarUseCase, InsertCarUseCase>();
             services.AddScoped<ISearchCarUseCase, SearchCarUseCase>();

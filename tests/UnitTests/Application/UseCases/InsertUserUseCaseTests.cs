@@ -51,8 +51,8 @@ namespace UnitTests.Application.UseCases
 
             // Assert
             output.IsValid.Should().BeFalse();
-            output.ErrorMessages.Should().ContainEquivalentOf($"'Name' must not be empty.");
-            output.ErrorMessages.Should().ContainEquivalentOf($"'Password' must not be empty.");
+            output.ErrorMessages.Should().ContainEquivalentOf("'Name' must not be empty.");
+            output.ErrorMessages.Should().ContainEquivalentOf("'Password' must not be empty.");
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace UnitTests.Application.UseCases
 
             // Assert
             output.IsValid.Should().BeFalse();
-            output.ErrorMessages.Should().ContainEquivalentOf($"An unexpected error occurred while inserting the user");
+            output.ErrorMessages.Should().ContainEquivalentOf("An unexpected error occurred while inserting the user");
         }
 
         private InsertUserCommand CreateCommand() => new InsertUserCommand

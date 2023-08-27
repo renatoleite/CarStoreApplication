@@ -52,9 +52,9 @@ namespace UnitTests.Application.UseCases
 
             // Assert
             output.IsValid.Should().BeFalse();
-            output.ErrorMessages.Should().ContainEquivalentOf($"'Model' must not be empty.");
-            output.ErrorMessages.Should().ContainEquivalentOf($"'Brand' must not be empty.");
-            output.ErrorMessages.Should().ContainEquivalentOf($"'Year' must be greater than '1500'.");
+            output.ErrorMessages.Should().ContainEquivalentOf("'Model' must not be empty.");
+            output.ErrorMessages.Should().ContainEquivalentOf("'Brand' must not be empty.");
+            output.ErrorMessages.Should().ContainEquivalentOf("'Year' must be greater than '1500'.");
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace UnitTests.Application.UseCases
 
             // Assert
             output.IsValid.Should().BeFalse();
-            output.ErrorMessages.Should().ContainEquivalentOf($"An unexpected error occurred while inserting the car.");
+            output.ErrorMessages.Should().ContainEquivalentOf("An unexpected error occurred while inserting the car.");
         }
 
         private InsertCarCommand CreateCommand() => new InsertCarCommand

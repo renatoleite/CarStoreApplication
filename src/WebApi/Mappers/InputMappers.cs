@@ -40,7 +40,7 @@ namespace WebApi.Mappers
             Id = id
         };
 
-        public static LoginUseCommand MapToApplication(this LoginUserInput input) => new LoginUseCommand
+        public static UserLoginCommand MapToApplication(this LoginUserInput input) => new UserLoginCommand
         {
             Name = input.UserName,
             Password = input.Password

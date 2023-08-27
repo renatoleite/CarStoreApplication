@@ -7,6 +7,7 @@ networks:
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:latest
+    container_name: mssql1
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y

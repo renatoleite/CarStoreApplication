@@ -1,6 +1,6 @@
 ﻿namespace Application.UseCases.PerformLogin.Commands
 {
-    public class LoginUseCommand
+    public class UserLoginCommand
     {
         public string Name { get; set; }
         public string Password { get; set; }
