@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Domain.Interfaces.Scripts;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Data.Scripts
+namespace Infrastructure.DataAccess.Scripts
 {
     [ExcludeFromCodeCoverage]
     public class CarScripts : ICarScripts

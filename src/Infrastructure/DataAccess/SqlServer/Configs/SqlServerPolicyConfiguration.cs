@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Data.SqlServer.Configs
+namespace Infrastructure.DataAccess.SqlServer.Configs
 {
     [ExcludeFromCodeCoverage]
     public class SqlServerPolicyConfiguration

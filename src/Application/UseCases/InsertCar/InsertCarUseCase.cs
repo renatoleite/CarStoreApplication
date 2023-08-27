@@ -1,8 +1,9 @@
 ﻿using Application.Shared.Models;
 using Application.UseCases.InsertCar.Commands;
-using Application.UseCases.InsertCar.Mappers;
+using Domain.Interfaces.Entity;
+using Domain.Interfaces.Repositories;
+using Domain.ValueObjects;
 using FluentValidation;
-using Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.InsertCar
@@ -12,15 +13,18 @@ namespace Application.UseCases.InsertCar
         private readonly ICarRepository _repository;
         private readonly ILogger<InsertCarUseCase> _logger;
         private readonly IValidator<InsertCarCommand> _validator;
+        private readonly IEntityFactory _entityFactory;
 
         public InsertCarUseCase(
             ILogger<InsertCarUseCase> logger,
             ICarRepository repository,
-            IValidator<InsertCarCommand> validator)
+            IValidator<InsertCarCommand> validator,
+            IEntityFactory entityFactory)
         {
             _logger = logger;
             _repository = repository;
             _validator = validator;
+            _entityFactory = entityFactory;
         }
 
         public async Task<Output> ExecuteAsync(InsertCarCommand command, CancellationToken cancellationToken)
@@ -39,7 +43,10 @@ namespace Application.UseCases.InsertCar
                 _logger.LogInformation("{UseCase} - Inserting car; Model: {model}, Brand: {brand}; CorrelationId: {CorrelationId}",
                     nameof(InsertCarUseCase), command.Model, command.Brand, command.CorrelationId);
 
-                var id = await _repository.InsertCarAsync(command.MapToCarDto(), cancellationToken);
+                var user = new User(command.UserId, command.UserName);
+                var car = _entityFactory.NewCar(command.Brand, command.Model, command.Year, user, user);
+
+                var id = await _repository.InsertCarAsync(car, cancellationToken);
 
                 _logger.LogInformation("{UseCase} - Inserted car successfully; CorrelationId: {CorrelationId}",
                     nameof(InsertCarUseCase), command.CorrelationId);

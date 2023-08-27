@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Data.SqlServer.Constants
+namespace Infrastructure.DataAccess.SqlServer.Constants
 {
     [ExcludeFromCodeCoverage]
     public static class SqlServerTransientExceptionDetector

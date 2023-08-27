@@ -1,11 +1,11 @@
-﻿using Infrastructure.Data.SqlServer.Configs;
-using Infrastructure.Data.SqlServer.Constants;
+﻿using Infrastructure.DataAccess.SqlServer.Configs;
+using Infrastructure.DataAccess.SqlServer.Constants;
 using Microsoft.Extensions.Options;
 using Polly;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Data.SqlServer.Context.RetryPolicy
+namespace Infrastructure.DataAccess.SqlServer.Context.RetryPolicy
 {
     [ExcludeFromCodeCoverage]
     public class DatabaseRetryPolicy : IDatabaseRetryPolicy

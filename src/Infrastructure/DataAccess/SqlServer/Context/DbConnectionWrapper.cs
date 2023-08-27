@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Infrastructure.Data.SqlServer.Context.RetryPolicy;
+using Infrastructure.DataAccess.SqlServer.Context.RetryPolicy;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Data.SqlServer.Context
+namespace Infrastructure.DataAccess.SqlServer.Context
 {
     [ExcludeFromCodeCoverage]
     public class DbConnectionWrapper : IDbConnectionWrapper

@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Data.Scripts
+﻿namespace Domain.Interfaces.Scripts
 {
     public interface ICarScripts
     {

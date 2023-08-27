@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Data.SqlServer.Context.RetryPolicy
+﻿namespace Infrastructure.DataAccess.SqlServer.Context.RetryPolicy
 {
     public interface IDatabaseRetryPolicy
     {

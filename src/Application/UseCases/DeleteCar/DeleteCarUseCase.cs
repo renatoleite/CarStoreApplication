@@ -1,7 +1,7 @@
 ﻿using Application.Shared.Models;
 using Application.UseCases.DeleteCar.Commands;
+using Domain.Interfaces.Repositories;
 using FluentValidation;
-using Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.DeleteCar

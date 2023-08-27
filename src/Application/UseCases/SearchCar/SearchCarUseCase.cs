@@ -1,9 +1,8 @@
 ﻿using Application.Shared.Models;
 using FluentValidation;
-using Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Logging;
 using Application.UseCases.SearchCar.Commands;
-using Application.UseCases.SearchCar.Mappers;
+using Domain.Interfaces.Repositories;
 
 namespace Application.UseCases.SearchCar
 {
@@ -39,7 +38,7 @@ namespace Application.UseCases.SearchCar
                 _logger.LogInformation("{UseCase} - Search car by term: {term}",
                     nameof(SearchCarUseCase), command.Term);
 
-                var result = await _repository.SearchCarAsync(command.MapToCarDto(), cancellationToken);
+                var result = await _repository.SearchCarAsync(command.Term, cancellationToken);
 
                 _logger.LogInformation("{UseCase} - Search car finish successfully; term: {term}",
                     nameof(SearchCarUseCase), command.Term);

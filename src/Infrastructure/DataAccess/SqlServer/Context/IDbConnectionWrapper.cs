@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Infrastructure.Data.SqlServer.Context
+namespace Infrastructure.DataAccess.SqlServer.Context
 {
     public interface IDbConnectionWrapper
     {

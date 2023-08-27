@@ -1,8 +1,10 @@
-﻿using Infrastructure.Data.Repositories;
-using Infrastructure.Data.Scripts;
-using Infrastructure.Data.SqlServer.Configs;
-using Infrastructure.Data.SqlServer.Context;
-using Infrastructure.Data.SqlServer.Context.RetryPolicy;
+﻿using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Scripts;
+using Infrastructure.DataAccess.Repositories;
+using Infrastructure.DataAccess.Scripts;
+using Infrastructure.DataAccess.SqlServer.Configs;
+using Infrastructure.DataAccess.SqlServer.Context;
+using Infrastructure.DataAccess.SqlServer.Context.RetryPolicy;
 using System.Data;
 using System.Data.SqlClient;
 

@@ -1,8 +1,7 @@
 ﻿using Application.Shared.Models;
 using Application.UseCases.UpdateCar.Commands;
-using Application.UseCases.UpdateCar.Mappers;
+using Domain.Interfaces.Repositories;
 using FluentValidation;
-using Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.UpdateCar
@@ -51,7 +50,8 @@ namespace Application.UseCases.UpdateCar
                 _logger.LogInformation("{UseCase} - Updating car by id: {id}",
                     nameof(UpdateCarUseCase), command.Id);
 
-                await _repository.UpdateCarAsync(command.MapToCarDto(), cancellationToken);
+                await _repository.UpdateCarAsync(command.Id, command.Model, command.Brand,
+                    command.Year, command.UserId, cancellationToken);
 
                 _logger.LogInformation("{UseCase} - Car updated successfully; Id: {id}",
                     nameof(UpdateCarUseCase), command.Id);
