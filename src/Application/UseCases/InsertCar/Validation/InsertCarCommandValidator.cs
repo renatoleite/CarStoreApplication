@@ -10,7 +10,6 @@ namespace Application.UseCases.InsertCar.Validation
             RuleFor(x => x.Model).NotEmpty();
             RuleFor(x => x.Brand).NotEmpty();
             RuleFor(x => x.Year).GreaterThan(1500);
-            RuleFor(x => x.CorrelationId).NotEmpty();
         }
     }
 }

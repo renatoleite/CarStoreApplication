@@ -21,7 +21,6 @@ namespace WebApi.Mappers
             Brand = input.Brand,
             Model = input.Model,
             Year = input.Year,
-            CorrelationId = Guid.NewGuid(),
             UserId = 1,
             UserName = "Renato"
         };

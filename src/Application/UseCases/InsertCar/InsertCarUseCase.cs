@@ -40,25 +40,25 @@ namespace Application.UseCases.InsertCar
                 if (!output.IsValid)
                     return output;
 
-                _logger.LogInformation("{UseCase} - Inserting car; Model: {model}, Brand: {brand}; CorrelationId: {CorrelationId}",
-                    nameof(InsertCarUseCase), command.Model, command.Brand, command.CorrelationId);
+                _logger.LogInformation("{UseCase} - Inserting car; Model: {model}, Brand: {brand}",
+                    nameof(InsertCarUseCase), command.Model, command.Brand);
 
                 var user = new User(command.UserId, command.UserName);
                 var car = _entityFactory.NewCar(command.Brand, command.Model, command.Year, user, user);
 
                 var id = await _repository.InsertCarAsync(car, cancellationToken);
 
-                _logger.LogInformation("{UseCase} - Inserted car successfully; CorrelationId: {CorrelationId}",
-                    nameof(InsertCarUseCase), command.CorrelationId);
+                _logger.LogInformation("{UseCase} - Inserted car successfully; Model: {model}, Brand: {brand}",
+                    nameof(InsertCarUseCase), command.Model, command.Brand);
 
-                output.AddResult($"Car inserted; Cod: {id}; CorrelationId: {command.CorrelationId}");
+                output.AddResult($"Car inserted; Cod: {id}; CorrelationId: {car.CorrelationId}");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{UseCase} - An unexpected error has occurred; CorrelationId: {CorrelationId}",
-                    nameof(InsertCarUseCase), command.CorrelationId);
+                _logger.LogError(ex, "{UseCase} - An unexpected error has occurred; Model: {model}, Brand: {brand}",
+                    nameof(InsertCarUseCase), command.Model, command.Brand);
 
-                output.AddErrorMessage($"An unexpected error occurred while inserting the car. CorrelationId {command.CorrelationId}");
+                output.AddErrorMessage($"An unexpected error occurred while inserting the car.");
             }
 
             return output;
