@@ -11,7 +11,9 @@ namespace WebApi.Mappers
             Brand = input.Brand,
             Model = input.Model,
             Year = input.Year,
-            CorrelationId = Guid.NewGuid()
+            CorrelationId = Guid.NewGuid(),
+            UserId = 1,
+            UserName = "Renato"
         };
 
         public static UpdateCarCommand MapToApplication(this UpdateCarInput input, int id) => new UpdateCarCommand
@@ -19,7 +21,8 @@ namespace WebApi.Mappers
             Brand = input.Brand,
             Model = input.Model,
             Year = input.Year,
-            Id = id
+            Id = id,
+            UserId = 1
         };
     }
 }

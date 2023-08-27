@@ -25,10 +25,12 @@ namespace Infrastructure.DataAccess.Scripts
                 CAR.DSC_MODEL AS [Model],
                 CAR.DSC_BRAND AS [Brand],
                 CAR.NUM_YEAR AS [Year],
-                CREATED_USER.NAM_USER AS [CreateUserName],
-                CAR.DAT_INC AS [IncDate],
+                CREATED_USER.COD_LOGIN AS [CreatedUserId],
+                CREATED_USER.NAM_USER AS [CreatedUserName],
+                CAR.DAT_INC AS [CreatedDate],
+                UPDATED_USER.COD_LOGIN AS [UpdatedUserId],
                 UPDATED_USER.NAM_USER AS [UpdatedUserName],
-                CAR.DAT_UPD AS [UpdDate]
+                CAR.DAT_UPD AS [UpdatedDate]
             FROM
                 [dbo].[CAR]
             INNER JOIN LOGIN AS CREATED_USER ON CAR.COD_USER_INC = CREATED_USER.COD_LOGIN

@@ -1,5 +1,7 @@
-﻿using Domain.Interfaces.Repositories;
+﻿using Domain.Interfaces.Entity;
+using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Scripts;
+using Infrastructure.DataAccess;
 using Infrastructure.DataAccess.Repositories;
 using Infrastructure.DataAccess.Scripts;
 using Infrastructure.DataAccess.SqlServer.Configs;
@@ -21,6 +23,7 @@ namespace WebApi.DependencyInjection
 
             services.AddSingleton<ICarScripts, CarScripts>();
 
+            services.AddScoped<IEntityFactory, EntityFactory>();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IDatabaseRetryPolicy, DatabaseRetryPolicy>();
             services.AddScoped<IDbConnectionWrapper, DbConnectionWrapper>();

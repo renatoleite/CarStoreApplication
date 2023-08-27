@@ -15,7 +15,7 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - "./src/Infrastructure/Data//SqlServer/DLL:/scripts/"
+      - "./src/Infrastructure/DataAccess//SqlServer/DLL:/scripts/"
     command:
       - /bin/bash
       - -c

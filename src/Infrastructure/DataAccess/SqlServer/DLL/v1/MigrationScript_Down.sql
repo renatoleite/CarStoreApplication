@@ -7,3 +7,6 @@ GO
 
 DROP TABLE [dbo].[CAR];
 GO
+
+DROP TABLE [dbo].[LOGIN];
+GO
