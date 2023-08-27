@@ -51,7 +51,7 @@ namespace WebApi.Controllers
                 if (userId == null || userName == null)
                     return BadRequest();
 
-                var output = await _insertCarUseCase.ExecuteAsync(input.MapToApplication(Convert.ToInt32(userId), userName.Value), cancellationToken);
+                var output = await _insertCarUseCase.ExecuteAsync(input.MapToApplication(Convert.ToInt32(userId.Value), userName.Value), cancellationToken);
 
                 if (output.IsValid)
                     return Ok(output.Result);
@@ -119,7 +119,7 @@ namespace WebApi.Controllers
                 if (userId == null)
                     return BadRequest();
 
-                var output = await _updateCarUseCase.ExecuteAsync(input.MapToApplication(id, Convert.ToInt32(userId)), cancellationToken);
+                var output = await _updateCarUseCase.ExecuteAsync(input.MapToApplication(id, Convert.ToInt32(userId.Value)), cancellationToken);
 
                 if (output.IsValid)
                     return Ok(output.Result);
