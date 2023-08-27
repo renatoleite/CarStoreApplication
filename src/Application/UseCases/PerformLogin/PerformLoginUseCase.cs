@@ -1,5 +1,4 @@
 ﻿using Application.Shared.Models;
-using Application.UseCases.InsertUser;
 using Application.UseCases.PerformLogin.Commands;
 using Domain.Interfaces.Repositories;
 using FluentValidation;
@@ -42,7 +41,7 @@ namespace Application.UseCases.PerformLogin
                     return output;
 
                 _logger.LogInformation("{UseCase} - Getting user; Name: {name}",
-                    nameof(InsertUserUseCase), command.Name);
+                    nameof(PerformLoginUseCase), command.Name);
 
                 var result = await _repository.GetUserByNameAsync(command.Name, cancellationToken);
 
@@ -54,18 +53,18 @@ namespace Application.UseCases.PerformLogin
                 }
 
                 _logger.LogInformation("{UseCase} - Generating authentication token; Name: {name}",
-                    nameof(InsertUserUseCase), command.Name);
+                    nameof(PerformLoginUseCase), command.Name);
 
                 var token = _authenticationService.CreateToken(result.Id, result.Name, result.Roles);
                 output.AddResult(token);
 
                 _logger.LogInformation("{UseCase} - Token generated successfully; Name: {name}",
-                    nameof(InsertUserUseCase), command.Name);
+                    nameof(PerformLoginUseCase), command.Name);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{UseCase} - An unexpected error has occurred;",
-                    nameof(InsertUserUseCase));
+                    nameof(PerformLoginUseCase));
 
                 output.AddErrorMessage($"An unexpected error has occurred");
             }

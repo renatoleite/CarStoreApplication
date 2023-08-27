@@ -55,7 +55,7 @@ namespace Application.UseCases.ChangeUserPermission
                 _logger.LogInformation("{UseCase} - User permission updated successfully; Id: {id}",
                     nameof(ChangeUserPermissionUseCase), command.Id);
 
-                output.AddResult("Car updated successfully");
+                output.AddResult("Login permission updated successfully");
             }
             catch (Exception ex)
             {
