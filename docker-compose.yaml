@@ -7,7 +7,7 @@ networks:
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:latest
-    container_name: mssql1
+    container_name: mssql-server
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
@@ -28,4 +28,13 @@ services:
         /opt/mssql-tools/bin/sqlcmd -U sa -P Pass@word -l 30 -e -i /scripts/v1/MigrationScript_Up.sql
         sleep infinity
   
-  
+  carstoreapp:
+    image: ${DOCKER_REGISTRY-}carstoreapp
+    container_name: carstoreapp
+    build:
+      context: .
+      dockerfile: /src/WebApi/Dockerfile
+    ports: 
+      - "8090:80"
+    networks:
+      - my-bridge-network
