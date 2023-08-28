@@ -32,13 +32,15 @@ dotnet test
 
 # Architecture
 
-This application is built with clean architecture, it was created in a short time, so there are some improvements that can be made.
+This application is built with clean architecture and .NET 6.
 
 The app was built using the car domain as a base. There are a few use cases for managing each flow of CRUD operations.
 
-The application has a database resiliency system using Polly, uses SQL Server and Dapper to communicate with the database.
+The application has a database resiliency system using Polly and uses SQL Server and Dapper to communicate with the database.
 
-It is possible to run and test the application both through Visual Studio, Docker and through integrated tests.
+It is possible to run and test the application both through Visual Studio, and Docker and through integrated tests.
+
+The application was created in a short time, so there are some improvements that can be made such as improving the domain, creating a UI using React, and improving the authentication system.
 
 # REST API
 
